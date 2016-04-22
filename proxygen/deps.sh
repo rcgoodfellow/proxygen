@@ -100,7 +100,7 @@ git checkout master
 
 # Build folly
 autoreconf --install
-./configure
+CXXFLAGS="-std=c++14" ./configure
 make -j$JOBS
 sudo make install
 
@@ -113,7 +113,8 @@ cd ../..
 # Get wangle
 if [ ! -e wangle/wangle ]; then
     echo "Cloning wangle"
-    git clone https://github.com/facebook/wangle
+    #!!! git clone https://github.com/facebook/wangle
+    git clone https://github.com/rcgoodfellow/wangle
 fi
 cd wangle/wangle
 git fetch
