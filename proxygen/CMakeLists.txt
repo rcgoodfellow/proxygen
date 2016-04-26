@@ -9,3 +9,4 @@ set(CMAKE_CXX_FLAGS "-std=c++14 -fcolor-diagnostics")
 include_directories(${proxygen_SOURCE_DIR}/..)
 
 add_subdirectory(lib)
+add_subdirectory(httpserver)
