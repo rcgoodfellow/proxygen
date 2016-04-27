@@ -70,7 +70,7 @@ cd $start_dir
 		svn checkout https://google-glog.googlecode.com/svn/trunk/ google-glog
 		cd google-glog
 		./configure
-		make
+		make -j$JOBS
 		sudo make install
 		cd ..
 	fi
@@ -83,7 +83,7 @@ cd $start_dir
     svn checkout https://google-gflags.googlecode.com/svn/trunk/ google-gflags
     cd google-gflags
     ./configure
-    make
+    make -j$JOBS
     sudo make install
     cd ..
 	fi
