@@ -6,7 +6,7 @@
 
 export CXX=clang++
 export CC=clang
-export CXXFLAGS="-std=c++14 -stdlib=libc++ -I/usr/include/c++/v1 -Wno-sign-compare"
+export CXXFLAGS="-std=c++14 -stdlib=libc++ -I/usr/include/c++/v1 -Wno-sign-compare -Wno-reserved-user-defined-literal"
 export LD_LIBRARY_PATH=/usr/local/lib
 
 # Parse args
