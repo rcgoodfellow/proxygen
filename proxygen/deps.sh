@@ -6,7 +6,7 @@
 
 export CXX=clang++
 export CC=clang
-export CXXFLAGS="-std=c++14 -stdlib=libc++ -I/usr/include/c++/v1"
+export CXXFLAGS="-std=c++14 -stdlib=libc++ -I/usr/include/c++/v1 -Wno-sign-compare"
 export LD_LIBRARY_PATH=/usr/local/lib
 
 # Parse args
@@ -150,7 +150,7 @@ autoreconf -ivf
 make -j$JOBS
 
 # Run tests
-LD_LIBRARY_PATH=/usr/local/lib make check
+# make check
 
 # Install the libs
 sudo make install
