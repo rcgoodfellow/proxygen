@@ -4,6 +4,11 @@
 ## install proxygen to use in another C++ project on this machine, run
 ## the sibling file `reinstall.sh`.
 
+export CXX=clang++
+export CC=clang
+export CXXFLAGS="-std=c++14 -stdlib=libc++ -I/usr/include/c++/v1"
+export LD_LIBRARY_PATH=/usr/local/lib
+
 # Parse args
 JOBS=8
 USAGE="./deps.sh [-j num_jobs]"
@@ -28,7 +33,6 @@ cd "$(dirname "$0")"
 # Some extra dependencies for Ubuntu 13.10 and 14.04
 sudo apt-get install -yq \
     cmake \
-    g++ \
     flex \
     bison \
     libkrb5-dev \
@@ -41,17 +45,26 @@ sudo apt-get install -yq \
     autoconf-archive \
     libevent-dev \
     libtool \
-    libboost-all-dev \
     libjemalloc-dev \
     libsnappy-dev \
     wget \
     unzip
 
+cd /3p
+#curl -OL https://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.gz/download
+#mv download boost.tgz
+tar zxf boost.tgz
+cd boost_1_60_0
+./bootstrap.sh --with-toolset=clang
+./b2 toolset=clang cxxflags="-stdlib=libc++ -std=c++14" linkflags="-stdlib=libc++" --without-python -j$JOBS
+sudo ./b2 install toolset=clang cxxflags="-stdlib=libc++ -std=c++14" linkflags="-stdlib=libc++" --without-python -j$JOBS
+cd $start_dir
+
 # Adding support for Ubuntu 12.04.x
 # Needs libdouble-conversion-dev, google-gflags and double-conversion
 # deps.sh in folly builds anyways (no trap there)
-if ! sudo apt-get install -y libgoogle-glog-dev;
-then
+#if ! sudo apt-get install -y libgoogle-glog-dev;
+#then
 	if [ ! -e google-glog ]; then
     echo "fetching glog from svn (apt-get failed)"
 		svn checkout https://google-glog.googlecode.com/svn/trunk/ google-glog
@@ -61,10 +74,10 @@ then
 		sudo make install
 		cd ..
 	fi
-fi
+#fi
 
-if ! sudo apt-get install -y libgflags-dev;
-then
+#if ! sudo apt-get install -y libgflags-dev;
+#then
 	if [ ! -e google-gflags ]; then
     echo "Fetching gflags from svn (apt-get failed)"
     svn checkout https://google-gflags.googlecode.com/svn/trunk/ google-gflags
@@ -74,10 +87,10 @@ then
     sudo make install
     cd ..
 	fi
-fi
+#fi
 
-if  ! sudo apt-get install -y libdouble-conversion-dev;
-then
+#if  ! sudo apt-get install -y libdouble-conversion-dev;
+#then
 	if [ ! -e double-conversion ]; then
     echo "Fetching double-conversion from git (apt-get failed)"
 		git clone https://github.com/floitsch/double-conversion.git double-conversion
@@ -86,7 +99,7 @@ then
 		sudo make install
 		cd ..
 	fi
-fi
+#fi
 
 
 # Get folly
@@ -100,7 +113,7 @@ git checkout master
 
 # Build folly
 autoreconf --install
-CXXFLAGS="-std=c++14" ./configure
+./configure
 make -j$JOBS
 sudo make install
 
@@ -121,7 +134,7 @@ git fetch
 git checkout master
 
 # Build wangle
-cmake .
+cmake -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_FLAGS="-std=c++14 -stdlib=libc++ -I/usr/include/c++/v1".
 make -j$JOBS
 sudo make install
 

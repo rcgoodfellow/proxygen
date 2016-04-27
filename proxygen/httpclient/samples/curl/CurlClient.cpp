@@ -11,6 +11,8 @@
 #include <proxygen/lib/http/session/HTTPUpstreamSession.h>
 #include <proxygen/lib/ssl/SSLContextConfig.h>
 
+#include <gflags/gflags.h>
+
 using namespace folly;
 using namespace proxygen;
 using namespace std;
