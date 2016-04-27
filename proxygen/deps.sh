@@ -50,9 +50,8 @@ sudo apt-get install -yq \
     wget \
     unzip
 
-cd /3p
-#curl -OL https://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.gz/download
-#mv download boost.tgz
+curl -OL https://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.gz/download
+mv download boost.tgz
 tar zxf boost.tgz
 cd boost_1_60_0
 ./bootstrap.sh --with-toolset=clang
