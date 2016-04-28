@@ -55,8 +55,8 @@ mv download boost.tgz
 tar zxf boost.tgz
 cd boost_1_60_0
 ./bootstrap.sh --with-toolset=clang
-./b2 toolset=clang cxxflags="-stdlib=libc++ -std=c++14" linkflags="-stdlib=libc++" --without-python -j$JOBS
-sudo ./b2 install toolset=clang cxxflags="-stdlib=libc++ -std=c++14" linkflags="-stdlib=libc++" --without-python -j$JOBS
+./b2 toolset=clang cxxflags="-stdlib=libc++ -std=c++14 -I/usr/local/include/c++/v1" linkflags="-stdlib=libc++" --without-python -j$JOBS
+sudo ./b2 install toolset=clang cxxflags="-stdlib=libc++ -std=c++14 -I/usr/local/include/v1" linkflags="-stdlib=libc++" --without-python -j$JOBS
 cd $start_dir
 
 # Adding support for Ubuntu 12.04.x
