@@ -61,6 +61,7 @@ ServerRtt, "server_rtt"
 
 /* ---- Used in PreConnect ---- */
 NewConnection, "new_connection"
+IsWaitingForNewConn, "waiting_for_new_connection"
 SessionManagerType, "sess_mgr_type"
 NewConnTimeout, "new_conn_timeout"
 InFlightConns, "in_flight_conns"
@@ -69,6 +70,7 @@ ConnsStarted, "conns_started"
 RequestsWaited, "requests_waited"
 TotalRequestsWaited, "total_requests_waited",
 TotalConnsStarted, "total_conns_started",
+TotalBackupConnsStarted, "total_backup_conns_started",
 SessionCacheHitType, "session_cache_hit_type"
 PerDomainLimit, "per_domain_limit"
 MaxConnectionRetryCount, "max_connection_retry_count"
@@ -222,6 +224,10 @@ ZeroRttEnabled, "zero_rtt_enabled"
 /* --- Used in ZeroVerification --- */
 ZeroVerifiedSuccess, "zero_verified_success"
 ZeroVerifiedError, "zero_verified_error"
+
+TransportRttCompleted, "transport_rtt_completed"
+UnparsedDataSize, "unparsed_data_size"
+UnparsedData, "unparsed_data"
 
 /* --- Used in MQTT Client --- */
 MQTTConnAttempts, "mqtt_conn_attempts"

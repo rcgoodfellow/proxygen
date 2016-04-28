@@ -384,6 +384,9 @@ class HTTPTransaction :
 
     virtual void removeWaitingForReplaySafety(
         folly::AsyncTransport::ReplaySafetyCallback* callback) noexcept = 0;
+
+    virtual const folly::AsyncTransportWrapper* getUnderlyingTransport()
+      const noexcept = 0;
   };
 
   typedef HTTPTransactionTransportCallback TransportCallback;
@@ -1048,6 +1051,8 @@ class HTTPTransaction :
  private:
   HTTPTransaction(const HTTPTransaction&) = delete;
   HTTPTransaction& operator=(const HTTPTransaction&) = delete;
+
+  void onDelayedDestroy(bool delayed) override;
 
   /**
    * Invokes the handler's onEgressPaused/Resumed if the handler's pause
