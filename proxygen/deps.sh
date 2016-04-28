@@ -6,7 +6,7 @@
 
 export CXX=clang++
 export CC=clang
-export CXXFLAGS="-std=c++14 -stdlib=libc++ -I/usr/include/c++/v1 -Wno-sign-compare -Wno-reserved-user-defined-literal"
+export CXXFLAGS="-std=c++14 -stdlib=libc++ -I/usr/local/include/c++/v1 -Wno-sign-compare -Wno-reserved-user-defined-literal"
 export LD_LIBRARY_PATH=/usr/local/lib
 
 # Parse args
@@ -133,7 +133,7 @@ git fetch
 git checkout master
 
 # Build wangle
-cmake -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_FLAGS="-std=c++14 -stdlib=libc++ -I/usr/include/c++/v1".
+cmake -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_FLAGS="-std=c++14 -stdlib=libc++ -I/usr/local/include/c++/v1".
 make -j$JOBS
 sudo make install
 
